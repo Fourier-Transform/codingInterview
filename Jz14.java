@@ -7,7 +7,7 @@ public class ListNode {
         this.val = val;
     }
 }*/
-public class Jz17 {
+public class Jz14 {
     public ListNode FindKthToTail(ListNode head,int k) {
         if(head == null) return null;
         ListNode list = head;
