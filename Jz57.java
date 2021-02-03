@@ -10,7 +10,7 @@ public class TreeLinkNode {
     }
 }
 */
-public class Solution {
+public class Jz57 {
     TreeLinkNode ret;
     boolean flag = false;
     boolean flag2 = false;

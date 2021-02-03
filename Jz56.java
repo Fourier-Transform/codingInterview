@@ -8,7 +8,7 @@
     }
 }
 */
-public class Solution {
+public class Jz56 {
     public ListNode deleteDuplication(ListNode pHead)
     {
         ListNode head = new ListNode(0);

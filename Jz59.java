@@ -13,7 +13,7 @@ public class TreeNode {
 
 }
 */
-public class Solution {
+public class Jz59 {
     public ArrayList<ArrayList<Integer> > Print(TreeNode pRoot) {
         ArrayList<ArrayList<Integer>> ret = new ArrayList<>();
         ArrayList<Integer> temp = new ArrayList<>();

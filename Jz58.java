@@ -11,7 +11,7 @@ public class TreeNode {
 
 }
 */
-public class Solution {
+public class Jz58 {
     
     boolean ret = true;
     boolean isSymmetrical(TreeNode pRoot)
