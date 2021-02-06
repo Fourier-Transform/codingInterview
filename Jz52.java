@@ -1,55 +1,29 @@
-/*
-public class TreeNode {
-    int val = 0;
-    TreeNode left = null;
-    TreeNode right = null;
-
-    public TreeNode(int val) {
-        this.val = val;
-
+public class Solution {
+    public boolean match(char[] str, char[] pattern)
+    {
+        String s = new String(str);
+        String p = new String(pattern);
+        int m = s.length() + 1, n = p.length() + 1;
+        boolean[][] dp = new boolean[m][n];
+        dp[0][0] = true;
+        for(int j = 2; j < n; j+=2){
+            dp[0][j] = dp[0][j-2] && p.charAt(j - 1) == '*';
+        }
+        s = "0" + s;
+        p = "0" + p;
+        for(int i = 1; i < m; i++){
+            for(int j = 1; j < n; j++){
+                if(p.charAt(j) == '*'){
+                    if(dp[i][j-2]) dp[i][j] = true;
+                    else if(dp[i][j-1]) dp[i][j] = true;
+                    else if(dp[i-1][j] && s.charAt(i)==p.charAt(j-1)) dp[i][j] = true;
+                    else if(dp[i-1][j] && p.charAt(j-1) == '.') dp[i][j] =true;
+                }else{
+                    if(dp[i-1][j-1] && s.charAt(i) == p.charAt(j)) dp[i][j] = true;
+                    else if(dp[i-1][j-1] && p.charAt(j) == '.') dp[i][j] = true;
+                }
+            }
+        }
+        return dp[m-1][n-1];
     }
-
-}
-*/
-import java.util.*;
-public class Jz52 {
-    String Serialize(TreeNode root) {
-        Queue<TreeNode> queue = new LinkedList<>();
-        StringBuilder sb = new StringBuilder();
-        queue.add(root);
-        while(!queue.isEmpty()){
-            TreeNode temp = queue.poll();
-            if(temp == null){
-                sb.append("#,");
-            }else{
-                sb.append(Integer.toString(temp.val)+",");
-                queue.add(temp.left);
-                queue.add(temp.right);
-            }
-        }
-        return sb.toString();
-  }
-    TreeNode Deserialize(String data) {
-       String[] arr = data.split(",");
-        if(arr[0].equals("#")) return null;
-        Queue<TreeNode> queue = new LinkedList<>();
-        TreeNode temp = new TreeNode(Integer.parseInt(arr[0]));
-        TreeNode root = temp;
-        queue.add(temp);
-        int i = 1;
-        while(!queue.isEmpty()){
-            temp = queue.poll();
-            if(!arr[i].equals("#")){
-                temp.left = new TreeNode(Integer.parseInt(arr[i]));
-                queue.add(temp.left);
-            }
-            i++;
-            if(!arr[i].equals("#")){
-                temp.right = new TreeNode(Integer.parseInt(arr[i]));
-                queue.add(temp.right);
-            }
-            i++;
-        }
-        return root;
-  }
 }
